@@ -41,7 +41,7 @@ fetch('https://restcountries.eu/rest/v2/all')
           btn.setAttribute('style','font-style:italic;color:black')
           btn.innerHTML = 'Click for Weather';
 		  
-		  // On Button click fetch data from Openweather api for that particular country
+         // On Button click fetch data from Openweather api for that particular country
 		  
           btn.setAttribute('onclick','findWeather('+obj.latlng[0]+','+obj.latlng[1]+",'"+obj.name+"')");
           pbtn.append(btn);
@@ -67,7 +67,7 @@ function findWeather(a,b,c)
               })
              .catch((error)=>{
                  //p4.innerHTML = 'Unable to fetch Weather due to lack of Co-Ordinates';
-                 alert('Current Weather in '+country+' '+'cannot be found due to lack of Co-Ordinates');
+                 alert('Current Weather in '+c+' '+'cannot be found due to lack of Co-Ordinates');
                  })
 }
 //creating html element through DOM
