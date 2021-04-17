@@ -40,24 +40,10 @@ fetch('https://restcountries.eu/rest/v2/all')
           var btn = myElement('button','btn btn-outline-light');
           btn.setAttribute('style','font-style:italic;color:black')
           btn.innerHTML = 'Click for Weather';
-		 
+		  
 		  // On Button click fetch data from Openweather api for that particular country
 		  
-          btn.addEventListener('click',()=>{
-			  fetch('https://api.openweathermap.org/data/2.5/weather?lat='+obj.latlng[0]+'&lon='+obj.latlng[1]+'&units=metric&appid=8ac2f5b4c0fc26a536b0fc262dc7549f')
-                .then((response)=>{
-					return response.json()})
-                  .then((weather)=>{
-					  console.log(weather);
-					 //p4.innerHTML = 'Weather :'+' '+obj.name+', '+weather.weather[0].main+' | '+weather.weather[0].description+', '+weather.main.temp+' °C';
-				     alert('Current Weather in '+obj.name+' : '+weather.weather[0].main+' | '+weather.weather[0].description+', Temperature : '
-					 +weather.main.temp+' °C, Humidity : '+weather.main.humidity+'%, Wind : '+weather.wind.speed+' m/sec');
-					})
-				   .catch((error)=>{
-					   //p4.innerHTML = 'Unable to fetch Weather due to lack of Co-Ordinates';
-					   alert('Current Weather in '+obj.name+' '+'cannot be found due to lack of Co-Ordinates');
-					   })
-		  });
+          btn.setAttribute('onclick','findWeather('+obj.latlng[0]+','+obj.latlng[1]+",'"+obj.name+"')");
           pbtn.append(btn);
           cardbody.append(pimg,p1,p2,p3,p4,pbtn);
           card.append(cardheader,cardbody);
@@ -66,7 +52,24 @@ fetch('https://restcountries.eu/rest/v2/all')
       })
     }).catch((error)=>console.log(error));
 
-
+// Find weather of country
+function findWeather(a,b,c)
+{
+    var country = c;
+        fetch('https://api.openweathermap.org/data/2.5/weather?lat='+a+'&lon='+b+'&units=metric&appid=8ac2f5b4c0fc26a536b0fc262dc7549f')
+          .then((response)=>{
+              return response.json()})
+            .then((weather)=>{
+                console.log(weather);
+               //p4.innerHTML = 'Weather :'+' '+obj.name+', '+weather.weather[0].main+' | '+weather.weather[0].description+', '+weather.main.temp+' °C';
+               alert('Current Weather in '+c+' : '+weather.weather[0].main+' | '+weather.weather[0].description+', Temperature : '
+               +weather.main.temp+' °C, Humidity : '+weather.main.humidity+'%, Wind : '+weather.wind.speed+' m/sec');
+              })
+             .catch((error)=>{
+                 //p4.innerHTML = 'Unable to fetch Weather due to lack of Co-Ordinates';
+                 alert('Current Weather in '+country+' '+'cannot be found due to lack of Co-Ordinates');
+                 })
+}
 //creating html element through DOM
 function myElement(elemName,elemClass='',elemId='')
 {
