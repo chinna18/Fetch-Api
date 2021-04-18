@@ -22,7 +22,7 @@ fetch('https://restcountries.eu/rest/v2/all')
           var cardbody = myElement('div','card-body');
           var pimg = myElement('p','pimgclass');
           var img = myElement('img','img-fluid');
-          img.setAttribute('style','height:200px;width:350px')
+          img.setAttribute('style','display:block;height:200px;width:100%')
           img.setAttribute('src',obj.flag);
           pimg.append(img);
           var p1 = myElement('p','capital');
